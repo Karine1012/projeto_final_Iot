@@ -1,12 +1,12 @@
 // Configuração do Broker MQTT
-const MQTT_HOST = "broker.hivemq.com"; // Troque pelo IP do seu Mosquitto se for local
-const MQTT_PORT = 8000;                // Porta WebSocket do broker
+const MQTT_HOST = "10.12.192.16"; // Troque pelo IP do seu Mosquitto se for local
+const MQTT_PORT = 9001;                // Porta WebSocket do broker
 const MQTT_CLIENT_ID = "Cliente_Dashboard_" + Math.random().toString(16).substr(2, 8);
 
 // Tópicos configurados no ESP32
-const TOPICO_TEMP = "trupi/ambiente/temperatura";
-const TOPICO_UMID = "trupi/ambiente/umidade";
-const TOPICO_GAS  = "trupi/ambiente/qualidade_ar";
+const TOPIC_TEMP = "aulas/trupi/temperatura";
+const TOPIC_HUM = "aulas/trupi/umidade";
+const TOPIC_AIR  = "aulas/trupi/qualidade_ar";
 
 let client = null;
 
@@ -35,7 +35,7 @@ function mudarAba(nomeAba) {
 
 // Conexão Paho MQTT
 function conectarMQTT() {
-    client = new Paho.MQTT.Client(MQTT_HOST, Number(MQTT_PORT), MQTT_CLIENT_ID);
+   client = new Paho.MQTT.Client(MQTT_HOST, Number(MQTT_PORT), "/mqtt", MQTT_CLIENT_ID);
 
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
@@ -51,9 +51,9 @@ function conectarMQTT() {
 
 function onConnect() {
     atualizarStatusMQTT(true);
-    client.subscribe(TOPICO_TEMP);
-    client.subscribe(TOPICO_UMID);
-    client.subscribe(TOPICO_GAS);
+    client.subscribe(TOPIC_TEMP);
+    client.subscribe(TOPIC_HUM);
+    client.subscribe(TOPIC_AIR);
 }
 
 function onFailure(error) {
@@ -74,11 +74,11 @@ function onMessageArrived(message) {
     const topico = message.destinationName;
     const valor = message.payloadString;
 
-    if (topico === TOPICO_TEMP) {
+    if (topico === TOPIC_TEMP) {
         document.getElementById("temp").innerText = `${valor}°C`;
-    } else if (topico === TOPICO_UMID) {
+    } else if (topico === TOPIC_HUM) {
         document.getElementById("umid").innerText = `${valor}%`;
-    } else if (topico === TOPICO_GAS) {
+    } else if (topico === TOPIC_AIR) {
         document.getElementById("gas").innerText = `${valor} AIR`;
     }
 }
