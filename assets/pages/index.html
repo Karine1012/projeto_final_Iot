@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard IoT - SESI SENAI</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+</head>
+<body>
+  <header class="header-principal">
+    <div class="header-titles">
+      <h1>Monitoramento Ambiental IoT</h1>
+      <h2>Grupo: Trupi</h2>
+    </div>
+    <nav class="nav-abas">
+      <button onclick="mudarAba('sobre')" class="btn-aba active">Sobre o Projeto</button>
+      <button onclick="mudarAba('dashboard')" class="btn-aba">Dashboard Ao Vivo</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Aba 1: Sobre -->
+    <section id="aba-sobre" class="aba-conteudo active">
+      <article class="descricao-projeto">
+        <h3>Objetivo do Projeto</h3>
+        <p>Desenvolvimento de uma solução IoT para monitoramento de temperatura, umidade e qualidade do ar em tempo real.</p>
+      </article>
+
+      <section class="galeria">
+        <article class="galeria-card">
+          <div class="img-container">
+            <img src="img/img1.png" alt="Montagem do Hardware ESP32">
+          </div>
+          <p>Montagem dos sensores no ESP32</p>
+        </article>
+
+        <article class="galeria-card">
+          <div class="img-container">
+            <img src="img/img2.png" alt="Broker Mosquitto Rodando">
+          </div>
+          <p>Servidor Broker MQTT local</p>
+        </article>
+
+        <article class="galeria-card">
+          <div class="img-container">
+            <img src="img/img3.png" alt="Testes em Bancada">
+          </div>
+          <p>Testes de bancada com LEDs de Alerta</p>
+        </article>
+      </section>
+    </section>
+
+    <!-- Aba 2: Dashboard -->
+    <section id="aba-dashboard" class="aba-conteudo">
+      <div id="status-mqtt" class="desconectado">Status: Desconectado</div>
+
+      <div class="cards-container">
+        <div class="card">
+          <h3>Temperatura</h3>
+          <p id="temp">20°C</p>
+        </div>
+        <div class="card">
+          <h3>Umidade</h3>
+          <p id="umid">10%</p>
+        </div>
+        <div class="card">
+          <h3>Qualidade do Ar</h3>
+          <p id="gas">100 AIR</p>
+        </div>
+      </div>
+
+      <div class="banner-inferior">
+        <p>Projeto IoT SESI SENAI Vinhedo — Grupo Trupi</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape-principal">
+    <p><strong>Integrantes:</strong> Karine, Kayla, Ana Giulia, Gabriela, Guilherme</p>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
