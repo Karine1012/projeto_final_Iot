@@ -20,7 +20,7 @@
   </header>
 
   <main>
-    <!-- Aba 1: Sobre -->
+   
     <section id="aba-sobre" class="aba-conteudo active">
       <article class="descricao-projeto">
         <h3>Objetivo do Projeto</h3>
@@ -51,7 +51,7 @@
       </section>
     </section>
 
-    <!-- Aba 2: Dashboard -->
+    
     <section id="aba-dashboard" class="aba-conteudo">
       <div id="status-mqtt" class="desconectado">Status: Desconectado</div>
 
@@ -77,9 +77,34 @@
   </main>
 
   <footer class="rodape-principal">
-    <p><strong>Integrantes:</strong> Karine, Kayla, Ana Giulia, Gabriela, Guilherme</p>
+    <p id="integrantes-container"><strong>Integrantes:</strong> <span id="lista-integrantes"></span></p>
   </footer>
 
   <script src="index.js"></script>
+
+ 
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const integrantesPadrao = ["Karine", "Kayla", "Ana Giulia", "Gabriela", "Guilherme"];
+
+      
+      let integrantesSalvos = localStorage.getItem("integrantesGrupo");
+
+      if (!integrantesSalvos) {
+        
+        localStorage.setItem("integrantesGrupo", JSON.stringify(integrantesPadrao));
+        integrantesSalvos = integrantesPadrao;
+      } else {
+        
+        integrantesSalvos = JSON.parse(integrantesSalvos);
+      }
+
+      
+      const elIntegrantes = document.getElementById("lista-integrantes");
+      if (elIntegrantes) {
+        elIntegrantes.textContent = integrantesSalvos.join(", ");
+      }
+    });
+  </script>
 </body>
 </html>

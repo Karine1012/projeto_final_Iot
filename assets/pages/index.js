@@ -1,9 +1,9 @@
-// Configuração do Broker MQTT
-const MQTT_HOST = "10.12.192.16"; // Troque pelo IP do seu Mosquitto se for local
-const MQTT_PORT = 9001;                // Porta WebSocket do broker
+
+const MQTT_HOST = "10.12.192.16";  
+const MQTT_PORT = 9001;                
 const MQTT_CLIENT_ID = "Cliente_Dashboard_" + Math.random().toString(16).substr(2, 8);
 
-// Tópicos configurados no ESP32
+
 const TOPIC_TEMP = "aulas/trupi/temperatura";
 const TOPIC_HUM = "aulas/trupi/umidade";
 const TOPIC_AIR  = "aulas/trupi/qualidade_ar";
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     conectarMQTT();
 });
 
-// Navegação de Abas
+
 function mudarAba(nomeAba) {
     const abas = document.querySelectorAll(".aba-conteudo");
     abas.forEach(aba => aba.classList.remove("active"));
